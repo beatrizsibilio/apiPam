@@ -1,5 +1,7 @@
 import { React } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Tempo from './components/Tempo';
+import api from './components/Api';
 
 export default function App() {
   return (
@@ -22,6 +24,7 @@ export default function App() {
           <Text style={styles.textoBotao}>Buscar</Text>
         </TouchableOpacity>
       </View>
+      <Tempo/>
     </View>
   );
 }
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
   botao: {
     marginLeft:'10%',
     marginRight:'10%',
-    backgroundColor:'#000'
+    backgroundColor:'purple'
   },
   textoBotao: {
     color:'#FFF',

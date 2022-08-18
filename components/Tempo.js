@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 export default function Tempo() {
  return (
      <>
-        <Text style={styles.texto}>Min: </Text>
+        <Text style={styles.texto}>Min: {props.data.min}</Text>
         <Text style={styles.texto}>Max: </Text>
         <Text style={styles.texto}>Descricao: </Text>
      </>

@@ -1,16 +1,15 @@
-import React, {useStates} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Tempo from './components/Tempo';
-import api from './components/Api';
+import Api from './components/Api';
 
 export default function App() {
-  const [dados, setDados] = useState();
-  const [cidade, setCidade] = useState();
+  const [cidade, setCidade] = useState("itu");
+  const [dados, setDados] = useState("");
 
   async function buscaCep(){
-    const resposta = await api.get('weather?array_limit=1&fields=only_results,temp,city_name,description,forecast,max,min,date&key=751a5f11&city_name=Peruibe,SP');
-    setDados(resposta.data.forecast[0]);
-    console.warn(dados);
+    const response = await Api.get(`weather?array_limit=2&fields=only_results,temp,city_name,forecast,max,min,date,description&key=751a5f11&city_name=${cidade},SP`);
+    setDados(response.data.forecast[0]);
   }
 
   return (
@@ -20,17 +19,17 @@ export default function App() {
       </View>
 
       <View style={styles.blocoGeral}>
-        <Text style={styles.label}>Digite sua cidade</Text>
+        <Text style={styles.label}>Digite sua cidade: </Text>
 
         <TextInput
           placeholder='sua cidade ...'
           style={styles.input}
-          onKeyPress={buscaCep}
+          onChangeText={(value)=>setCidade(value)}
         />
       </View>
 
       <View style={styles.blocoGeral}>
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity style={styles.botao} onPress={buscaCep}>
           <Text style={styles.textoBotao}>Buscar</Text>
         </TouchableOpacity>
       </View>
